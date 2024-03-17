@@ -8,7 +8,20 @@
     <title>Meme-Editor</title>
 </head>
 
-<body>
+<body onload="onInit()">
+
+    <div class="canvas-container">
+        <canvas width="400" height="400" onclick="onDraw(event)"></canvas>
+
+        <div>
+            <button onclick="onSetShape('text')">Text</button>
+        </div>
+    </div>
+    
+    <section class="select-img-container">
+    </section>
+
+    <script src="js/meme.controller.js"></script>
     <script src="js/main.js"></script>
 </body>
 
