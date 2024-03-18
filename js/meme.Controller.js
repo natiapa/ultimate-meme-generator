@@ -7,7 +7,8 @@ function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
-    gTextInput = document.querySelector('.text-container input[name="text"]')
+    gTextInput = document.querySelector('.text-container input[name="text"]').value
+    console.log('gTextInput', gTextInput)
 
     resizeCanvas()
     renderMeme()
@@ -16,12 +17,16 @@ function onInit() {
 }
 
 function renderMeme() {
+    const meme = getMeme()
+    const length = meme.length - 1
+
+    console.log('meme', meme)
     const img = new Image();
     img.src = 'images/2.jpg';
    
     img.onload = () => {
        gCtx.drawImage(img, 0, 0,img.naturalWidth, img.naturalHeight );
-       drawText('chec', gElCanvas.width / 2, 50);
+       drawText(meme[length].lines[0].txt, gElCanvas.width / 2, 50);
     }
 }
 
@@ -41,8 +46,10 @@ function drawText(text, x, y) {
 	gCtx.strokeText(text, x, y)
 }
 
-function onUpdateText() {
-    const text = gTextInput.value
+function onSetLineTxt(elTxt) {
+    const text = elTxt
+    console.log('text', text)
+    setLineTxt(text)
     renderMeme()
 }
 

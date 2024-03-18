@@ -9,7 +9,9 @@ function getMeme() {
 }
 
 function setLineTxt(text) {
-    _createMeme(0, [{ txt: text, size: 12, color: 'red' }])
+   const meme =  _createMeme(0, [{ txt: text, size: 12, color: 'red' }])
+   gMeme.push(meme)
+   console.log('gMeme setline', gMeme)
     _saveMeme
 }
 
@@ -17,9 +19,10 @@ function setLineTxt(text) {
 
 function _createMemes() {
     gMeme = loadFromStorage(MEMES_STORAGE_KEY)
+  
     if (!gMeme) {
         gMeme = [
-            _createMeme(0, [{ txt: 'First line', size: 20, color: 'red' }])
+            
         ]
         _saveMeme
     }
