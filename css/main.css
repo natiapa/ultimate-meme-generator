@@ -8,25 +8,16 @@ body {
 }
 
 .canvas-container {
-    width: 40vw;
+    position: relative;
+    width: 60vw;
     background-color: lightsteelblue;
     border: 1px solid lightgray;
     margin: 10px auto;
 }
 
-canvas {
+.canvas-container canvas {
     display: block;
-    background-color: white;
+    background-color: rgb(244, 238, 238);
+    z-index: 1; /* Set a lower z-index */
 }
-
-
-.select-img-container img{
-    width: 150px;
-    cursor: pointer;
-    filter: grayscale(.7);
-}
-
-.select-img-container img:hover{
-    transition: 1s;
-    filter: unset;
-}
+ 

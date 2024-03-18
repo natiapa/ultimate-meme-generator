@@ -5,16 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css" />
-    <title>Meme Generator</title>
+    <title>Meme-Editor</title>
 </head>
 
-<body>
-    <section>
-
+<body onload="onInit()">
+   
+    <section class="editor">
+        <div class="canvas-container">
+            <canvas id="canvas" width="400" height="400" onclick="onDraw(event)"></canvas>
+        </div>
+        <div class="text-container">
+            <label for="text"></label>
+            <input type="text" id="text" name="text" placeholder="Add Text here">
+        </div>
     </section>
 
-    <script src="js/meme.Controller.js"></script>
-    <script src="js/main.js"></script>
+    <section class="gallery"></section>
+
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/meme.service.js"></script>
+
+    <script src="js/meme.controller.js"></script>
+
 </body>
 
 </html>

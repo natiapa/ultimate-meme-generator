@@ -1,60 +1,34 @@
 'use strict'
 let gElCanvas
 let gCtx
-let gCurrShape 
+let gTextInput
 
 function onInit() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
-    
-    renderMeme()
+
+    gTextInput = document.querySelector('.text-container input[name="text"]')
+
     resizeCanvas()
-    drawImg()
+    renderMeme()
+   
     window.addEventListener('resize', () => resizeCanvas())
 }
 
 function renderMeme() {
-  
-    const elImg = document.querySelector('.select-img-container')
-
-    const strHtmls =`
-    <img src="images/2.jpg" onclick="onSelectImg(this)" />
-    `
-    elImg.innerHTML = strHtmls
-}
-
-function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.clientWidth
-}
-
-function drawImg() {
-    const elImg = new Image()
-    elImg.src = 'images/2.jpg'
-
-    elImg.onload = () =>
-        gCtx.drawImage(elImg, 0, 0, elImg.naturalWidth, elImg.naturalHeight)
-}
-
-function onSetShape(shape) {
-    gCurrShape = shape
-}
-
-function onSelectImg(elImg) {
-    gElCanvas.height = (elImg.naturalHeight / elImg.naturalWidth) * gElCanvas.width
-    gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-}
-
-function onDraw(ev) {
-    const { offsetX, offsetY } = ev
-
-    if (gCurrShape === 'text') {
-        drawText('Hello', offsetX, offsetY)
+    const img = new Image();
+    img.src = 'images/2.jpg';
+   
+    img.onload = () => {
+       gCtx.drawImage(img, 0, 0,img.naturalWidth, img.naturalHeight );
+       drawText('chec', gElCanvas.width / 2, 50);
     }
 }
 
 function drawText(text, x, y) {
-	gCtx.lineWidth = 2
+    console.log('text', text)
+
+    gCtx.lineWidth = 2
 	gCtx.strokeStyle = 'orange'
 
 	gCtx.fillStyle = 'lightsteelblue'
@@ -66,3 +40,16 @@ function drawText(text, x, y) {
 	gCtx.fillText(text, x, y)
 	gCtx.strokeText(text, x, y)
 }
+
+function onUpdateText() {
+    const text = gTextInput.value
+    renderMeme()
+}
+
+
+function resizeCanvas() {
+    const elEditor= document.querySelector('.editor')
+    const elContainer = elEditor.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.clientWidth
+}
+
