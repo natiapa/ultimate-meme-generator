@@ -1,45 +1,70 @@
 'use strict'
-const MEMES_STORAGE_KEY = 'myApp_memes'
+const IMAGES_STORAGE_KEY = 'myApp_images'
 
-var gMeme
-_createMemes()
+var gImgs = []
+var gMeme = {
+    selectedImgId: 0,
+    selectedLineIdx: 0,
+    lines: [{
+        txt: 'hello',
+        size: '12',
+        color: 'black',
+    }]
+}
+
+_createImgs()
 
 function getMeme() {
     return gMeme
 }
 
+function getImgs() {
+    return gImgs
+}
+
 function setLineTxt(text) {
-   const meme =  _createMeme(0, [{ txt: text, size: 12, color: 'red' }])
-   gMeme.push(meme)
-   console.log('gMeme setline', gMeme)
-    _saveMeme
+    gMeme.lines[0].txt = text
 }
 
-// privet function
+function setImg(imgId) {
+    gMeme.selectedImgId = imgId
+    console.log('gMeme.selectedImgId', gMeme.selectedImgId)
+}
 
-function _createMemes() {
-    gMeme = loadFromStorage(MEMES_STORAGE_KEY)
-  
-    if (!gMeme) {
-        gMeme = [
-            _createMeme(0, [{ txt: 'ho', size: 12, color: 'red' }])
+function getImgById(imgId) {
+    const img = gImgs.find(img => img.id === imgId)
+
+}
+
+function _createImgs() {
+    gImgs = loadFromStorage(IMAGES_STORAGE_KEY)
+    
+    if (!gImgs) {
+        gImgs = [
+            _createImg('images/2.jpg'),
+            _createImg('images/3.jpg'),
+            _createImg('images/4.jpg'),
+            _createImg('images/5.jpg'),
+            _createImg('images/6.jpg'),
+            _createImg('images/8.jpg'),
+            _createImg('images/11.jpg'),
+            _createImg('images/12.jpg'),
         ]
-        _saveMeme
+        _saveImg()
     }
-
 }
-function _createMeme(selectedLineIdx = 0, lines = [{ txt: '', size: 12, color: 'black' }]) {
+
+function _createImg(url ='') {
     return {
-        selectedImgId: makeId(),
-        selectedLineIdx,
-        lines: lines.map(line => ({ // Use map to iterate over lines
-            txt: line.txt,           // Access txt property using line.txt
-            size: line.size,         // Access size property using line.size
-            color: line.color        // Access color property using line.color
-        }))
-    };
+        id: makeId(),
+        url,
+        keywords: [],
+    }
 }
 
-function _saveMeme() {
-    saveToStorage(MEMES_STORAGE_KEY, gMeme)
+function _saveImg() {
+    saveToStorage(IMAGES_STORAGE_KEY, gImgs)
 }
+
+
+
