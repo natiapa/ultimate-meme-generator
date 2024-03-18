@@ -18,6 +18,23 @@ body {
 .canvas-container canvas {
     display: block;
     background-color: rgb(244, 238, 238);
-    z-index: 1; /* Set a lower z-index */
+    z-index: 1;
+    /* Set a lower z-index */
 }
- 
+
+.select-img-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.select-img-container img {
+    width: 200px;
+    cursor: pointer;
+    filter: blur(.1rem);
+}
+
+.select-img-container img:hover {
+    transition: .3s;
+    filter: unset;
+}

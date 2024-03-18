@@ -12,6 +12,7 @@ function onInit() {
 
     resizeCanvas()
     renderMeme()
+    rederGaller()
    
     window.addEventListener('resize', () => resizeCanvas())
 }

@@ -22,7 +22,7 @@ function _createMemes() {
   
     if (!gMeme) {
         gMeme = [
-            
+            _createMeme(0, [{ txt: 'ho', size: 12, color: 'red' }])
         ]
         _saveMeme
     }

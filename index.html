@@ -9,23 +9,30 @@
 </head>
 
 <body onload="onInit()">
-   
+
     <section class="editor">
         <div class="canvas-container">
             <canvas id="canvas" width="400" height="400" onclick="onDraw(event)"></canvas>
         </div>
         <div class="text-container">
             <label for="text"></label>
-            <input type="text" id="text" name="text" placeholder="Add Text here"   onblur="onSetLineTxt(this.value)">
+            <input type="text" id="text" name="text" placeholder="Add Text here" onblur="onSetLineTxt(this.value)">
+            <button>Add Text</button>
         </div>
     </section>
 
-    <section class="gallery"></section>
+    <h3>Select an image</h3>
+    <section class="gallery">
+        <div class="select-img-container">
+        </div>
+    </section>
 
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/meme.service.js"></script>
+    <script src="js/meme.controller.js"></script>
 
+    <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
 
 </body>
