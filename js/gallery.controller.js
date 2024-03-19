@@ -14,8 +14,7 @@ function rederGallery() {
 
 function onImgSelect(imgId, imgUrl) {
     console.log('imgUrl', imgUrl)
-    gImg = imgUrl 
-    console.log('gImg', gImg)
+    gImgUrl = imgUrl
     setImg(imgId)
     renderMeme()
 }

@@ -6,9 +6,9 @@ var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [{
-        txt: 'hello',
-        size: '12',
-        color: 'black',
+        txt: '',
+        size: '',
+        color: '',
     }]
 }
 

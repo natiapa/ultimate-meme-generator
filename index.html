@@ -10,15 +10,28 @@
 
 <body onload="onInit()">
 
+    <nav class="menu">
+        <!-- <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label> -->
+        <ul>
+            <li><a href='http://'>Home</a></li>
+            <li><a href='http://'>gallery</a></li>
+            <li><a href='http://'>About</a></li>
+        </ul>
+    </nav>
+
     <section class="editor">
         <div class="canvas-container">
             <canvas id="canvas" width="400" height="400"></canvas>
         </div>
-        <div class="text-container">
-            <label for="text"></label>
-            <input type="text" id="text" name="text" placeholder="Add Text here" onblur="onSetLineTxt(this.value)">
-            <button>Add Text</button>
-        </div>
+
+        <section class="user-actions-container">
+            <div class="text-container">
+                <label for="text"></label>
+                <input type="text" id="text" name="text" placeholder="Add Text here" onblur="onSetLineTxt(this.value)">
+                <button>Add Text</button>
+            </div>
+        </section>
+        
     </section>
 
     <h3>Select an image</h3>
@@ -30,7 +43,7 @@
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/meme.service.js"></script>
-   
+
 
     <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>

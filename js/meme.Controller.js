@@ -2,7 +2,7 @@
 let gElCanvas
 let gCtx
 let gTextInput
-let gImg
+let gImgUrl
 
 
 function onInit() {
@@ -22,7 +22,7 @@ function renderMeme() {
     const meme = getMeme()
 
     const img = new Image()
-    img.src = gImg  || 'images/2.jpg'
+    img.src = gImgUrl  || 'images/2.jpg'
 
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
