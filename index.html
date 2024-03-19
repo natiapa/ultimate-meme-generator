@@ -27,11 +27,24 @@
         <section class="user-actions-container">
             <div class="text-container">
                 <label for="text"></label>
-                <input type="text" id="text" name="text" placeholder="Add Text here" onblur="onSetLineTxt(this.value)">
-                <button>Add Text</button>
+                <input type="text" id="text" name="text" placeholder="Add Text here">
+                
+                <button name="add-line-btn" onclick="onAddLine()" >Add Line</button>
+            </div>
+
+            <div class="btn-container">
+                <button name="decrease-btn" onclick="onChangeFontSize('-')">A -</button>
+                <button name="increase-btn" onclick="onChangeFontSize('+')">A +</button>
+                </button>
+                <label for="color"></label>
+                <input type="color" id="color" name="color" onchange="onUpdateColor()">
+            </div>
+
+            <div class="btn download-btn">
+                <button id="download-btn" name="download-btn">Download</button>
             </div>
         </section>
-        
+
     </section>
 
     <h3>Select an image</h3>

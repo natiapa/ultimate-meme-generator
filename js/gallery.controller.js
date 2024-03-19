@@ -13,7 +13,6 @@ function rederGallery() {
 }
 
 function onImgSelect(imgId, imgUrl) {
-    console.log('imgUrl', imgUrl)
     gImgUrl = imgUrl
     setImg(imgId)
     renderMeme()
