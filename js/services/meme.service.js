@@ -5,11 +5,7 @@ var gImgs = []
 var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
-    lines: [{
-        txt: '',
-        size: 45,
-        color: 'black',
-    }]
+    lines: []
 }
 
 _createImgs()
@@ -24,20 +20,13 @@ function getImgs() {
 
 function setLineTxt(text) {
     const newLine = _createLine(text)
-
     gMeme.lines.push(newLine)
-  gMeme.selectedLineIdx++
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
-// function  addLine(elTxt){
-// const newLine = _createLine(elTxt)
 
-//       gMeme.lines.push(newLine)
-//     gMeme.selectedLineIdx++
-// }
 
 function setImg(imgId) {
     gMeme.selectedImgId = imgId
-    console.log('gMeme.selectedImgId', gMeme.selectedImgId)
 }
 
 function getImgById(imgId) {
@@ -45,16 +34,26 @@ function getImgById(imgId) {
     return img
 }
 
-function updateColor(textColor) {
+function switchLine() {
+    const numLines = gMeme.lines.length
+    if(numLines === 0) return
 
-    gMeme.lines[0].color = textColor
-
+    gMeme.selectedLineIdx++
+    if(gMeme.selectedLineIdx >= numLines){
+        gMeme.selectedLineIdx = 0
+    }
+ 
 }
+
+function updateColor(textColor) {
+    gMeme.lines[gMeme.selectedLineIdx].color = textColor
+}
+
 function changeFontSize(sign) {
     if (sign === '+') {
-        gMeme.lines[0].size++
+        gMeme.lines[gMeme.selectedLineIdx].size++
     } else {
-        gMeme.lines[0].size--
+        gMeme.lines[gMeme.selectedLineIdx].size--
     }
 }
 
@@ -83,11 +82,11 @@ function _createImg(url = '') {
         keywords: [],
     }
 }
-function _createLine(txt) {
+function _createLine(txt, color = 'black') {
     return {
         txt,
         size: 45,
-        color: 'black',
+        color,
     }
 }
 function _saveImg() {

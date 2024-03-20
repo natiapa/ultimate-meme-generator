@@ -1,11 +1,11 @@
 'use strict'
 let gElCanvas
 let gCtx
-let gTextInput
 let gImgUrl
 let currentY = 25
+let flag = false
 
-  // currentY += line.size + 10
+
 function onInit() {
     const elEditor = document.querySelector('.editor')
     const elCanvasContainer = elEditor.querySelector('.canvas-container')
@@ -29,13 +29,34 @@ function renderMeme() {
         gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
 
         currentY = 25
-        lines.forEach(line => {
+
+        lines.forEach((line, idx) => {
             drawText(line.txt, line.color, line.size + 'px', gElCanvas.width / 4, currentY)
-        
-            currentY += line.size + 10
+            
+            if (idx === meme.selectedLineIdx && flag === true) {
+                drawFrame(currentY, line.size, '+')
+                flag = false
+            }
+            currentY += line.size + 50
+
         })
     }
 }
+
+// function renderLine() {
+//     const meme = getMeme()
+//     const { lines } = meme
+//     currentY = 25
+//     console.log('meme.selectedLineIdx', meme.selectedLineIdx)
+//     lines.forEach((line, idx) => {
+
+//         if (idx === meme.selectedLineIdx) {
+//             drawFrame(currentY, line.size,'+')
+//         }
+
+//         currentY += line.size + 50
+//     })
+// }
 
 function addListeners() {
     window.addEventListener('resize', () => resizeCanvas())
@@ -46,17 +67,6 @@ function resizeCanvas() {
     const elEditor = document.querySelector('.editor')
     const elContainer = elEditor.querySelector('.canvas-container')
     gElCanvas.width = elContainer.clientWidth
-
-    // let tempCurrImg = gImgUrl
-    // if(tempCurrImg) {
-    //     coverCanvasWithImg(tempCurrImg)
-    // }
-}
-
-function onSetLineTxt(elTxt) {
-    const text = elTxt
-    setLineTxt(text)
-    renderMeme()
 }
 
 function onUpdateColor() {
@@ -69,19 +79,17 @@ function onChangeFontSize(sign) {
     changeFontSize(sign)
     renderMeme()
 }
+
 function onAddLine() {
     const elTxt = document.querySelector('.text-container input[name="text"]').value
-    console.log('elTxt', elTxt)
     setLineTxt(elTxt)
     renderMeme()
 }
 
-function onDownloadCanvas() {
-    const link = document.createElement('a')
-    link.href = gElCanvas.toDataURL('image/jpeg')
-
-    link.download = 'canvas_image.jpg'
-    link.click()
+function onSwitchLine() {
+    flag = true
+    switchLine()
+    renderMeme()
 }
 
 function drawText(text, textColor, fontSize, x, y) {
@@ -96,4 +104,20 @@ function drawText(text, textColor, fontSize, x, y) {
 
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
+}
+
+function drawFrame(y, size, sign) {
+    if (sign === '+') {
+        gCtx.strokeStyle = 'black'
+    }
+    gCtx.lineWidth = 2
+    gCtx.strokeRect(10, y - size / 2, gElCanvas.width - 100, size + 10)
+}
+
+function onDownloadCanvas() {
+    const link = document.createElement('a')
+    link.href = gElCanvas.toDataURL('image/jpeg')
+
+    link.download = 'canvas_image.jpg'
+    link.click()
 }
