@@ -24,6 +24,11 @@ function setLineTxt(text) {
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
+function updateLocation(x, y, width) {
+    gMeme.lines[gMeme.selectedLineIdx].x = x
+    gMeme.lines[gMeme.selectedLineIdx].y = y
+    gMeme.lines[gMeme.selectedLineIdx].width = width
+}
 
 function setImg(imgId) {
     gMeme.selectedImgId = imgId
@@ -42,7 +47,6 @@ function switchLine() {
     if (gMeme.selectedLineIdx >= numLines) {
         gMeme.selectedLineIdx = 0
     }
-
 }
 
 function updateColor(textColor) {
@@ -55,6 +59,16 @@ function changeFontSize(sign) {
     } else {
         gMeme.lines[gMeme.selectedLineIdx].size--
     }
+}
+
+function isClickOnLine(x, y) {
+    return gMeme.lines.findIndex(line => (
+        x >= line.x - line.width / 2 && x <= line.x + line.width / 2 &&
+        y >= line.y - line.height / 2 && y <= line.y + line.height / 2
+    ))
+}
+function updateIndex(clickedLineIdx) {
+    gMeme.selectedLineIdx = clickedLineIdx
 }
 
 function _createImgs() {
@@ -82,11 +96,15 @@ function _createImg(url = '') {
         keywords: [],
     }
 }
-function _createLine(txt, color = 'black') {
+function _createLine(txt, color = 'black', fontSize = 30, width, x = 0, y = 0) {
     return {
         txt,
-        size: 30,
+        size: fontSize,
         color,
+        x,
+        y,
+        width,
+        height: fontSize,
     }
 }
 function _saveImg() {
