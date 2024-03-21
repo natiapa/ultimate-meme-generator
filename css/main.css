@@ -1,82 +1,85 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    background-color: rgb(80, 79, 94);
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	background-color: rgb(80, 79, 94);
 }
 
 .canvas-container {
-    position: relative;
-    width: 0vw;
-    background-color: rgb(80, 79, 94);
-    border: 1px solid  rgb(80, 79, 94);
-    margin: 10px auto;
+	position: relative;
+	background-color: rgb(7, 6, 22);
+	border: 1px solid rgb(80, 79, 94);
+	margin: 10px auto;
 }
 
 .canvas-container canvas {
-    display: block;
-    z-index: 1;
+	display: block;
+	z-index: 1;
+
 }
 
+
 .select-img-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
 }
 
 .select-img-container img {
-    width: calc(33.33% - 20px);
-    max-width: 200px;
-    height: auto;
-    cursor: pointer;
-    filter: blur(.1rem);
+	width: calc(33.33% - 20px);
+	max-width: 200px;
+	height: auto;
+	cursor: pointer;
+	filter: blur(.1rem);
 }
 
 .select-img-container img:hover {
-    transition: .3s;
-    filter: unset;
+	transition: .3s;
+	filter: unset;
 }
 
 .editor {
-    display: flex;
+	display: flex;
 }
 
-.canvas-container {
-    flex: 1; /* Take up remaining space */
-}
 
 .user-actions-container {
-    flex: 1; /* Take up remaining space */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Align items in the center horizontally */
-    justify-content: center; /* Align items in the center vertically */
+	/* Remove flex properties to prevent stretching */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .menu {
 	background: #004F6A;
-	background: linear-gradient(to bottom,  #000B0F,  #35385A);
+	background: linear-gradient(to bottom, #000B0F, #35385A);
 	height: 80px;
 	padding-left: 18px;
 	border-radius: 4px;
 }
-.menu ul, .menu li {
+
+.menu ul,
+.menu li {
 	margin: 0 auto;
 	padding: 0;
 	list-style: none
 }
+
 .menu ul {
 	width: 100%;
 	text-align: left;
 }
+
 .menu li {
 	display: inline-block;
 	position: relative;
 }
+
 .menu a {
 	display: block;
 	line-height: 80px;
@@ -85,14 +88,17 @@ body {
 	color: #FFFFFF;
 	font-size: 16px;
 }
+
 .menu a.dropdown-arrow:after {
 	content: "\2193";
 	margin-left: 5px;
 }
+
 .menu li a:hover {
 	color: #0099CC;
 	background: #F2F2F2;
 }
+
 .menu input {
 	display: none;
 	margin: 0;
@@ -102,6 +108,7 @@ body {
 	opacity: 0;
 	cursor: pointer
 }
+
 .menu label {
 	display: none;
 	line-height: 80px;
@@ -109,13 +116,15 @@ body {
 	position: absolute;
 	left: 35px
 }
+
 .menu label:before {
 	font-size: 1.6em;
 	color: #FFFFFF;
-	content: "\2261"; 
+	content: "\2261";
 	margin-left: 20px;
 }
-.menu ul.sub-menus{
+
+.menu ul.sub-menus {
 	height: auto;
 	overflow: hidden;
 	width: 170px;
@@ -124,31 +133,80 @@ body {
 	z-index: 99;
 	display: none;
 }
+
 .menu ul.sub-menus li {
 	display: block;
 	text-align: left;
 	width: 100%;
 }
+
 .menu ul.sub-menus a {
 	color: #FFFFFF;
 	font-size: 32px;
 }
+
 .menu li:hover ul.sub-menus {
 	display: block
 }
-.menu ul.sub-menus a:hover{
+
+.menu ul.sub-menus a:hover {
 	background: #F2F2F2;
 	color: #444444;
 }
-@media screen and (max-width: 800px){
-	#menu {position:relative}
-	#menu ul {background:#444444;position:absolute;top:100%;right:0;left:0;z-index:3;height:auto;display:none;text-align:left;}
-	#menu ul.sub-menus {width:100%;position:static;}
-	#menu ul.sub-menus a {padding-left:30px;}
-	#menu li {display:block;float:none;width:auto;}
-	#menu input, #menu label {position:absolute;top:0;left:0;display:block}
-	#menu input {z-index:4}
-	#menu input:checked + label {color:#FFFFFF}
-	#menu input:checked + label:before {content:"\00d7"}
-	#menu input:checked ~ ul {display:block}
+
+@media screen and (max-width: 800px) {
+	.menu {
+		position: relative
+	}
+
+	.menu ul {
+		background: #444444;
+		position: absolute;
+		top: 100%;
+		right: 0;
+		left: 0;
+		z-index: 3;
+		height: auto;
+		display: none;
+		text-align: left;
+	}
+
+	.menu ul.sub-menus {
+		width: 100%;
+		position: static;
+	}
+
+	.menu ul.sub-menus a {
+		padding-left: 30px;
+	}
+
+	.menu li {
+		display: block;
+		float: none;
+		width: auto;
+	}
+
+	.menu input,
+	.menu label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block
+	}
+
+	.menu input {
+		z-index: 4
+	}
+
+	.menu input:checked+label {
+		color: #FFFFFF
+	}
+
+	.menu input:checked+label:before {
+		content: "\00d7"
+	}
+
+	.menu input:checked~ul {
+		display: block
+	}
 }

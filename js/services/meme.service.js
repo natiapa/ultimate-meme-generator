@@ -36,13 +36,13 @@ function getImgById(imgId) {
 
 function switchLine() {
     const numLines = gMeme.lines.length
-    if(numLines === 0) return
+    if (numLines === 0) return
 
     gMeme.selectedLineIdx++
-    if(gMeme.selectedLineIdx >= numLines){
+    if (gMeme.selectedLineIdx >= numLines) {
         gMeme.selectedLineIdx = 0
     }
- 
+
 }
 
 function updateColor(textColor) {
@@ -85,7 +85,7 @@ function _createImg(url = '') {
 function _createLine(txt, color = 'black') {
     return {
         txt,
-        size: 45,
+        size: 30,
         color,
     }
 }

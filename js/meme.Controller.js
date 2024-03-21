@@ -12,6 +12,7 @@ function onInit() {
     gElCanvas = elCanvasContainer.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
 
+
     addListeners()
     renderMeme()
     rederGallery()
@@ -23,12 +24,13 @@ function renderMeme() {
     const { lines } = meme
 
     const img = new Image()
-    img.src = gImgUrl || 'images/2.jpg';
-
+    img.src = gImgUrl || 'images/2.jpg'
+    
+    currentY = 25
     img.onload = () => {
+        gElCanvas.width = img.naturalWidth; // Set canvas width to image natural width
+        gElCanvas.height = img.naturalHeight; // Set canvas height to image natural height
         gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
-
-        currentY = 25
 
         lines.forEach((line, idx) => {
             drawText(line.txt, line.color, line.size + 'px', gElCanvas.width / 4, currentY)
@@ -38,25 +40,12 @@ function renderMeme() {
                 flag = false
             }
             currentY += line.size + 50
-
         })
+     
     }
 }
 
-// function renderLine() {
-//     const meme = getMeme()
-//     const { lines } = meme
-//     currentY = 25
-//     console.log('meme.selectedLineIdx', meme.selectedLineIdx)
-//     lines.forEach((line, idx) => {
 
-//         if (idx === meme.selectedLineIdx) {
-//             drawFrame(currentY, line.size,'+')
-//         }
-
-//         currentY += line.size + 50
-//     })
-// }
 
 function addListeners() {
     window.addEventListener('resize', () => resizeCanvas())
@@ -67,6 +56,7 @@ function resizeCanvas() {
     const elEditor = document.querySelector('.editor')
     const elContainer = elEditor.querySelector('.canvas-container')
     gElCanvas.width = elContainer.clientWidth
+    renderMeme()
 }
 
 function onUpdateColor() {
